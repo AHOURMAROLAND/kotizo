@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'notifications',
     'agent_ia',
     'admin_panel',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
