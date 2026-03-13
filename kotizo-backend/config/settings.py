@@ -129,6 +129,10 @@ CELERY_BEAT_SCHEDULE = {
     'envoyer-rapport-journalier': {
         'task': 'notifications.tasks.envoyer_rapport_journalier',
         'schedule': 86400,
+    'supprimer-anciennes-conversations': {
+    'task': 'agent_ia.tasks.supprimer_anciennes_conversations',
+    'schedule': 86400,
+},
     },
 }
 

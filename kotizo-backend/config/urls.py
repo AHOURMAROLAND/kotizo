@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/paiements/', include('paiements.urls')),
     path('api/quickpay/', include('quickpay.urls')),
     path('api/notifications/', include('notifications.urls')),
+    path('api/agent-ia/', include('agent_ia.urls')),
 ]
