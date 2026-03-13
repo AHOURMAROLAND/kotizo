@@ -103,6 +103,11 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:3000').split(',')
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://10.0.1.41:8000',
+    'http://10.0.1.41:8081',
+]
 
 REDIS_URL = config('REDIS_URL', default='redis://localhost:6379/0')
 
