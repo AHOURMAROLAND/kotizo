@@ -126,6 +126,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'users.tasks.reset_compteurs_quotidiens',
         'schedule': 86400,
     },
+    'envoyer-rapport-journalier': {
+        'task': 'notifications.tasks.envoyer_rapport_journalier',
+        'schedule': 86400,
+    },
 }
 
 CLOUDINARY_STORAGE = {

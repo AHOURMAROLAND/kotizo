@@ -7,4 +7,5 @@ urlpatterns = [
     path('api/cotisations/', include('cotisations.urls')),
     path('api/paiements/', include('paiements.urls')),
     path('api/quickpay/', include('quickpay.urls')),
+    path('api/notifications/', include('notifications.urls')),
 ]
