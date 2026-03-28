@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=change-me-in-production
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: kotizo
+      POSTGRES_USER: kotizo
+      POSTGRES_PASSWORD: kotizo123
+    ports:
+      - "5432:5432"
