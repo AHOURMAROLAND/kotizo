@@ -1,18 +1,11 @@
-#!/usr/bin/env python
-"""Run script for Kotizo backend"""
-import os
+import asyncio
 import sys
+import os
 
-def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-    
-    try:
-        from django.core.management import execute_from_command_line
-    except ImportError:
-        print("Error: Django not installed. Run: pip install django")
-        sys.exit(1)
-    
-    execute_from_command_line(['manage.py', 'runserver'])
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-if __name__ == '__main__':
-    main()
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
+from django.core.management import execute_from_command_line
+execute_from_command_line(sys.argv)

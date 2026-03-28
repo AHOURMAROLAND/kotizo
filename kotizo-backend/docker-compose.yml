@@ -1,25 +1,27 @@
-version: '3.8'
-
 services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
-    ports:
-      - "8000:8000"
-    environment:
-      - DEBUG=True
-      - SECRET_KEY=change-me-in-production
-  redis:
-    image: redis:alpine
+  kotizo_redis:
+    image: redis:7-alpine
+    container_name: kotizo_redis
     ports:
       - "6379:6379"
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: kotizo
-      POSTGRES_USER: kotizo
-      POSTGRES_PASSWORD: kotizo123
+    restart: unless-stopped
+    volumes:
+      - kotizo_redis_data:/data
+
+  kotizo_evolution:
+    image: atendai/evolution-api:latest
+    container_name: kotizo_evolution
     ports:
-      - "5432:5432"
+      - "8080:8080"
+    environment:
+      - EVOLUTION_API_KEY=kotizo-evolution-key-2026
+      - WEBHOOK_GLOBAL_URL=http://host.docker.internal:8000/api/whatsapp/webhook/
+      - WEBHOOK_GLOBAL_ENABLED=true
+      - DEL_INSTANCE=false
+    restart: unless-stopped
+    volumes:
+      - kotizo_evolution_data:/evolution/instances
+
+volumes:
+  kotizo_redis_data:
+  kotizo_evolution_data:

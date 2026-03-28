@@ -1,7 +1,10 @@
-"""Celery tasks"""
 from celery import shared_task
+from core.logger import KotizoLogger
+
+logger = KotizoLogger('core.tasks')
+
 
 @shared_task
-def send_notification_task(message):
-    # TODO: Implement notification sending
-    pass
+def test_celery():
+    logger.info('test_celery', {'message': 'Celery fonctionne correctement'})
+    return 'OK'
